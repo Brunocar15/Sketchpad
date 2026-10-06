@@ -117,3 +117,13 @@ func bake_page() -> void:
 
 func _on_gui_input(event: InputEvent) -> void:
 	canvas_input.emit(event)
+
+
+## Updates the canvas cursor using the selected tool's settings.
+func update_tool_cursor(tool: Tool) -> void:
+	if tool == null or tool.cursor == null:
+		control_node.mouse_default_cursor_shape = Control.CURSOR_ARROW
+		return
+
+	Input.set_custom_mouse_cursor(tool.cursor, Input.CURSOR_CROSS, tool.cursor_hotspot)
+	control_node.mouse_default_cursor_shape = Control.CURSOR_CROSS

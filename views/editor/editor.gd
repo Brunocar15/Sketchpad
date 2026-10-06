@@ -20,6 +20,9 @@ var current_tool: Tool:
 func _ready() -> void:
 	canvas.canvas_input.connect(_handle_canvas_input)
 
+	tool_changed.connect(canvas.update_tool_cursor)
+	canvas.update_tool_cursor(current_tool)
+
 	page_controls.menu_toggle.connect(edit_extras.open)
 	page_controls.play_toggle.connect(
 		func(): playback_manager.is_playing = !playback_manager.is_playing
